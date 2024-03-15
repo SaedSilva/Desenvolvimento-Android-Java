@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.saeddev.lista.R;
+import com.saeddev.lista.controller.PersonController;
 import com.saeddev.lista.model.Person;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,11 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
     Person pessoa;
 
+    PersonController personController;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        personController = new PersonController();
         pessoa = new Person();
 
         editName = findViewById(R.id.editName);
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setCourse(editCourse.getText().toString());
             pessoa.setPhone(editPhone.getText().toString());
             Toast.makeText(MainActivity.this, "Salvo!", Toast.LENGTH_LONG).show();
+
+            personController.save(pessoa);
         });
 
     }
